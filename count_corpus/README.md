@@ -80,19 +80,3 @@ é	1
 а	1
 ```
 
-
-
-
-
-
-And here's the input, if you are wondering :smile:
-```
-	wlazł kotek na płotek i mruga
-	ładna to piosenka, niedługa!
-	niedługa, niekrótka, lecz w sam raz,
-	zaśpiewaj, koteczku, jeszcze raz!
-
-
-	é é а
-	kot kot kot Kot Kot kot Kot
-```
