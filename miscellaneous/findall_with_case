@@ -1,0 +1,40 @@
+def findall_with_case(needle: str, haystack: str):
+    """Fetch all unique casing variants of a substring in a string.
+    """
+
+    # Convert to lowercase and protect against slicing bugs if .lower() converts İ (one char) to i̇ (two chars)
+    needle_lower = needle.replace("İ", "I").lower()
+    haystack_lower = haystack.replace("İ", "I").lower()
+
+    needles = set()
+    needle_len = len(needle)
+    for index in range(len(haystack_lower)):
+        if haystack_lower.startswith(needle_lower, index):
+            found_needle = haystack[index:index + needle_len]
+            needles.add(found_needle)
+    
+    return list(needles)
+
+# USAGE
+text = "London is a beautiful city. I like London, but DO YOU LIKE LONDON?"
+print(findall_with_case("LoNdOn", text))
+
+ # Turkish is not fully working, but if a non-Turkish text is corrupted and contains İ or İ (I and a combining dot above), it's gonna work
+text = "Diyarbakır is a beautiful city. I like Diyarbakır, but DO YOU LIKE DİYARBAKIR?"
+print(findall_with_case("diyarbakır", text))
+
+text = "Diyarbakır is a beautiful city. I like Diyarbakır, but DO YOU LIKE DİYARBAKIR?"
+print(findall_with_case("DİYARbakir", text))
+
+text = "THİS OCR ENGİNE İS CORRUPTED AND THİNKS İT'S İN TURKEİ. LoNdOn, lonDON, lONDON"
+print(findall_with_case("london", text))
+
+text = "M*A*S*H (TV series) has nothing to do with regex. It can also be spelled with different casing as M*A*S*H (TV SERIES)"
+print(findall_with_case("m*a*s*h (TV series)", text))
+
+# OUTPUT:
+# ['London', 'LONDON']
+# ['Diyarbakır']
+# ['DİYARBAKIR']
+# ['LoNdOn', 'lonDON', 'lONDON']
+# ['M*A*S*H (TV series)', 'M*A*S*H (TV SERIES)']
