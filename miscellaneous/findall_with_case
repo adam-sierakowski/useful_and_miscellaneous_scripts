@@ -1,5 +1,9 @@
 def findall_with_case(needle: str, haystack: str):
     """Fetch all unique casing variants of a substring in a string.
+    Not sure if it works correctly with Turkish but it works correctly with poor OCR that has Turkish i's by accident.
+    The Turkish i's are an exception in Unicode and they have to be treated specially.
+    Otherwise it should work correctly for the entire Unicode, unless either Unicode updates something or Python changes its behavior in how it treats it.
+    As of 2024, if it works.
     """
 
     # Convert to lowercase and protect against slicing bugs if .lower() converts İ (one char) to i̇ (two chars)
