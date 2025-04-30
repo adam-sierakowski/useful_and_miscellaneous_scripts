@@ -8,7 +8,7 @@ words = []
 
 with open(input_filename, "r", encoding="utf-8") as f:
 	for line in f:
-		line = re.sub(r"([\.,…:;\*„”\?\!])", r" \1 ", line)
+		line = re.sub(r"([\.,…:;\*„”\?\!()“])", r" \1 ", line)
 		line = line.replace("  ", " ").strip()
 		tokenized_line = re.split(r'[ \b\n]', line)
 		words.extend(list(tokenized_line))
